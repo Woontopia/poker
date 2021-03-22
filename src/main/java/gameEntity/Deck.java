@@ -23,7 +23,6 @@ public class Deck {
                 deck.add(new Card(i, symbol));
             }
         }
-
     }
 
     private void initialiseRoyalDeck() {

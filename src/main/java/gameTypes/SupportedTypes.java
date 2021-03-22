@@ -4,5 +4,5 @@ public enum SupportedTypes {
     TEXASHOLDEM,
     OMAHA,
     FIVECARD,
-    ROYAL
+    ROYAL,
 }

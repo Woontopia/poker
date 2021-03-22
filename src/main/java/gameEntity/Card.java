@@ -4,7 +4,7 @@ import org.javatuples.Pair;
 
 import java.io.PrintWriter;
 
-public class Card {
+public class Card implements Comparable{
     private int number;
     private CardSymbol symbol;
     PrintWriter printWriter = new PrintWriter(System.out,true);
@@ -70,5 +70,12 @@ public class Card {
             return "K";
         }
         return Integer.toString(number);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        int compareNumber = ((Card) o).getCardInfo().getValue0();
+        // For ascending order
+        return this.number - compareNumber;
     }
 }
