@@ -12,6 +12,6 @@ public class StraightAnalyzer extends Analyzer{
 
     @Override
     public int analyzeHand(List<Card> cards) {
-        return 0;
+        return nextAnalyzer.analyzeHand(cards);
     }
 }

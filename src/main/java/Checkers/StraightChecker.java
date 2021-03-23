@@ -8,30 +8,22 @@ import java.util.List;
 
 public class StraightChecker {
 
-    public void straight(List<Card> cards, int numberOfTimes) {
+    public boolean containsStraight(List<Card> cards, int numberOfCards) {
         Collections.sort(cards);
-        for(int i = 0; i < cards.size(); i++) {
-            int startingIndex = i;
-            //Loop next five cards if possible
-            if (cards.get(i).getCardInfo().getValue0() + 1 == cards.get(i).getCardInfo().getValue0()) {
-
-            }
-//            if (i + 1 == cards.size()) {
-//
-//            } else {
-//                if (cards.get(i).getCardInfo().getValue0() + 1 == cards.get(i).getCardInfo().getValue0()) {
-//
-//                }
-//            }
-        }
-    }
-
-    public boolean isConsecutive(List<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i + 1) != list.get(i)) {
-                return false;
+        int longuestStart = 0;
+        int longuestLength = 0;
+        int currentStart = 0;
+        while(currentStart < cards.size()) {
+            int currentLength = 0;
+            while(currentLength + currentLength < cards.size() && cards.get(currentStart).getCardInfo().getValue0() + currentLength == cards.get(currentStart + currentLength).getCardInfo().getValue0()) {
+                currentLength++;
+                if(currentLength > longuestLength) {
+                    longuestLength = currentLength;
+                    longuestStart = currentStart;
+                }
+                currentStart += currentLength;
             }
         }
-        return true;
+        return longuestLength == numberOfCards;
     }
 }

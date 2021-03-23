@@ -1,6 +1,7 @@
 package handAnalyzers;
 
 import gameEntity.Card;
+import gameEntity.HandTypes;
 
 import java.util.List;
 
@@ -12,6 +13,6 @@ public class HighCardAnalyzer extends Analyzer{
 
     @Override
     public int analyzeHand(List<Card> cards) {
-        return 0;
+        return HandTypes.HIGH_CARD.getHandStrength();
     }
 }

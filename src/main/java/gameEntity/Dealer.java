@@ -1,6 +1,8 @@
 package gameEntity;
 
 import gameTypes.SupportedTypes;
+import handAnalyzers.Analyzer;
+import handAnalyzers.AnalyzerChain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,8 +49,7 @@ public class Dealer {
     }
 
     public int evaluateHandStrength(List<Card> cards) {
-
-        return 1;
+        return new AnalyzerChain().getHandStrength(cards);
     }
 
     private Card showCard() {
