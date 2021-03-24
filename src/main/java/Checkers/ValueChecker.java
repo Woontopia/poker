@@ -22,10 +22,12 @@ public class ValueChecker {
     public boolean twoTimesSameValue(List<Card> cards, int numberOfCards) {
         Collections.sort(cards);
         int counter = 0;
+        int firstValue = 0;
         List<Integer> cardValues = buildListOfCardValues(cards);
         for (Card card: cards) {
-            if (Collections.frequency(cardValues, card.getCardInfo().getValue0()) == numberOfCards) {
+            if ((Collections.frequency(cardValues, card.getCardInfo().getValue0()) == numberOfCards) && (card.getCardInfo().getValue0() != firstValue)) {
                 counter++;
+                firstValue = card.getCardInfo().getValue0();
                 if (counter == 2) {
                     return true;
                 }

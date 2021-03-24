@@ -20,10 +20,10 @@ public class StraighFlushAnalyzer extends Analyzer{
 
     @Override
     public int analyzeHand(List<Card> cards) {
-//        List<Card> sameSymbolCards = symbolChecker.sameSymbolCards(cards);
-//        if (sameSymbolCards.size() >= 5 && straightChecker.containsStraight(sameSymbolCards, 5)) {
-//            return HandTypes.STRAIGHT_FLUSH.getHandStrength();
-//        }
+        List<Card> sameSymbolCards = symbolChecker.sameSymbolCards(cards);
+        if (sameSymbolCards.size() >= 5 && straightChecker.containsStraight(sameSymbolCards, 5)) {
+            return HandTypes.STRAIGHT_FLUSH.getHandStrength();
+        }
         return nextAnalyzer.analyzeHand(cards);
     }
 }

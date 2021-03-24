@@ -99,6 +99,20 @@ class AnalyzerTest {
     }
 
     @Test
+    public void testStraight2() {
+        var cards = new ArrayList<Card>();
+        cards.add(new Card(10, CardSymbol.SPADE));
+        cards.add(new Card(11, CardSymbol.CLUB));
+        cards.add(new Card(12, CardSymbol.SPADE));
+        cards.add(new Card(13, CardSymbol.HEART));
+        cards.add(new Card(1, CardSymbol.SPADE));
+        cards.add(new Card(2, CardSymbol.HEART));
+        cards.add(new Card(4, CardSymbol.DIAMOND));
+        int strength = dealer.evaluateHandStrength(cards);
+        assertEquals(HandTypes.STRAIGHT.getHandStrength(), strength);
+    }
+
+    @Test
     public void testThreeAKind() {
         var cards = new ArrayList<Card>();
         cards.add(new Card(5, CardSymbol.SPADE));

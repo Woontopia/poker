@@ -10,20 +10,23 @@ public class StraightChecker {
 
     public boolean containsStraight(List<Card> cards, int numberOfCards) {
         Collections.sort(cards);
-        int longuestStart = 0;
-        int longuestLength = 0;
-        int currentStart = 0;
-        while(currentStart < cards.size()) {
-            int currentLength = 0;
-            while(currentLength + currentLength < cards.size() && cards.get(currentStart).getCardInfo().getValue0() + currentLength == cards.get(currentStart + currentLength).getCardInfo().getValue0()) {
-                currentLength++;
-                if(currentLength > longuestLength) {
-                    longuestLength = currentLength;
-                    longuestStart = currentStart;
+        int count = 1;
+        for (int i = 0; i < cards.size(); i++) {
+            if (i + 1 < cards.size()) {
+                count = (isConsecutive(cards, i, i + 1)) ? count + 1 : 1;
+            } else {
+                if (cards.get(i).getCardInfo().getValue0() == 13 && cards.get(0).getCardInfo().getValue0() == 1) {
+                    count++;
                 }
-                currentStart += currentLength;
+            }
+            if (count == numberOfCards) {
+                return true;
             }
         }
-        return longuestLength == numberOfCards;
+        return false;
+    }
+
+    private boolean isConsecutive(List<Card> cards, int firstIndex, int secondIndex) {
+        return cards.get(firstIndex).getCardInfo().getValue0() + 1 == cards.get(secondIndex).getCardInfo().getValue0();
     }
 }
