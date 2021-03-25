@@ -6,6 +6,7 @@ import gameEntity.Dealer;
 import gameEntity.player.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HoldEmPoker extends PokerGame {
@@ -15,31 +16,39 @@ public class HoldEmPoker extends PokerGame {
         super.MAXPLAYERS = 9;
         super.MINPLAYERS = 2;
         super.playerNumberOfCards = 2;
-        super.askNumberOfPlayers();
-        pool = new CommunityPool(5);
-        dealer = new Dealer(SupportedTypes.TEXASHOLDEM);
-        super.addPlayers();
+        initialiseGame();
     }
 
     @Override
     public void play() {
-        dealer.shuffleCards();
-        dealCards();
-        pool.addCards(dealer.flop());
-        pool.addCard(dealer.turn());
-        pool.addCard(dealer.river());
-        // Calculate hands
-        calculatePlayerHandStrengths();
-        pool.printPool();
-        printPlayerHands();
-        // show winning player
-        // playAgain?
-        System.out.println("Fuck");
+        while (super.playing) {
+            super.dealer.shuffleCards();
+            dealCards();
+            dealerActions();
+            calculatePlayerHandStrengths();
+            showCards();
+            showResults();
+            super.askForNewRound();
+        }
+    }
+
+    @Override
+    public void newRound() {
+        pool.emptyPool();
+        super.dealer.newRound();
+        emptyPlayersHands();
+    }
+
+    private void showResults() {
+        Collections.sort(players);
+        for (Player player: players) {
+            player.printHandType();
+        }
     }
 
     private void calculatePlayerHandStrengths() {
         for (Player player: players) {
-            player.assignStrength(dealer.evaluateHandStrength(combine2Lists(player.getCards(), pool.getPool())));
+            player.assignStrength(super.dealer.evaluateHandStrength(combine2Lists(player.getCards(), pool.getPool())));
         }
     }
 
@@ -53,7 +62,7 @@ public class HoldEmPoker extends PokerGame {
         int cardsDealt = 0;
         while(cardsDealt < playerNumberOfCards) {
             for (Player player: players) {
-                player.addCard(dealer.dealCard());
+                player.addCard(super.dealer.dealCard());
             }
             cardsDealt++;
         }
@@ -65,15 +74,28 @@ public class HoldEmPoker extends PokerGame {
         }
     }
 
-    private void newRound() {
-        pool.emptyPool();
-        dealer.newRound();
-        emptyPlayersHands();
-    }
-
     private void emptyPlayersHands() {
         for (Player player: players) {
             player.emptyHand();
         }
     }
+
+    private void showCards() {
+        pool.printPool();
+        printPlayerHands();
+    }
+
+    private void dealerActions() {
+        pool.addCards(super.dealer.flop());
+        pool.addCard(super.dealer.turn());
+        pool.addCard(super.dealer.river());
+    }
+
+    private void initialiseGame() {
+        super.askNumberOfPlayers();
+        pool = new CommunityPool(5);
+        super.dealer = new Dealer(SupportedTypes.TEXASHOLDEM);
+        super.addPlayers();
+    }
+
 }

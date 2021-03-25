@@ -1,10 +1,11 @@
 package gameEntity.player;
 
 import gameEntity.Card;
+import gameEntity.HandTypes;
 
 import java.util.ArrayList;
 
-public abstract class Player {
+public abstract class Player implements Comparable{
     ArrayList<Card> hand = new ArrayList<>();
     int maxNumberOfCards;
     String name;
@@ -21,5 +22,19 @@ public abstract class Player {
 
     public void assignStrength(int value) {
         handStrength = value;
+    }
+
+    public void printHandType() {
+        for (HandTypes handType: HandTypes.values()) {
+            if (handStrength == handType.getHandStrength()) {
+                System.out.println(name + " has " + handType);
+            }
+        }
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        int compareNumber = ((Player) o).handStrength;
+        return compareNumber - this.handStrength;
     }
 }

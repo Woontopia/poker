@@ -11,4 +11,9 @@ public class OmahaPoker extends PokerGame {
     public void play() {
         super.printNotAvailable();
     }
+
+    @Override
+    public void newRound() {
+
+    }
 }

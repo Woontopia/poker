@@ -16,8 +16,11 @@ public abstract class PokerGame {
     int playerNumberOfCards;
     List<Player> players = new ArrayList<>();
     Dealer dealer;
+    boolean playing = true;
 
     public abstract void play();
+
+    public abstract void newRound();
 
     public void askNumberOfPlayers() {
         Scanner sc = new Scanner(System.in);
@@ -41,5 +44,22 @@ public abstract class PokerGame {
             players.add(new Computer(playerNumberOfCards, "AI-" + i));
         }
         System.out.println(players.size());
+    }
+
+    public void askForNewRound() {
+        Scanner sc = new Scanner(System.in);
+        String response;
+        do {
+            System.out.println();
+            System.out.print("Do you want to play a new round? (yes / no): ");
+            response = sc.nextLine();
+            if (!response.equalsIgnoreCase("yes") && !response.equalsIgnoreCase("no")) {
+                System.out.println("Invalid Input: Why do you hate me?");
+            }
+        }while (!response.equalsIgnoreCase("yes") && !response.equalsIgnoreCase("no"));
+        if (response.equalsIgnoreCase("no")) {
+            playing = false;
+        }
+        newRound();
     }
 }

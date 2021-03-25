@@ -10,4 +10,9 @@ public class RoyalPoker extends PokerGame {
     public void play() {
         super.printNotAvailable();
     }
+
+    @Override
+    public void newRound() {
+
+    }
 }
