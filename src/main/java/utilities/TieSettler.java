@@ -14,7 +14,8 @@ public class TieSettler {
     private int bestHandStrength = 0;
 
     public Player settleTie(List<Player> players, CommunityPool pool) {
-        return settlePairDraws(getAllPlayersInvolved(players), pool, 4);
+        var playerss = getAllPlayersInvolved(players);
+        return settlePairDraws(playerss, pool, 4);
     }
 
     public boolean isGameTied(List<Player> players) {
@@ -29,7 +30,6 @@ public class TieSettler {
     }
 
     private Player settlePairDraws(List<Player> players, CommunityPool pool, int numberOfCardsInPair) {
-        System.out.println("Pair " + numberOfCardsInPair);
         ValueChecker valueChecker = new ValueChecker();
         ArrayList<Player> playerList = new ArrayList<>();
         int highestValue = getHighestCardPairValue(players, pool, numberOfCardsInPair);
@@ -48,8 +48,7 @@ public class TieSettler {
     }
 
     private Player settleDraw(List<Player> players, int indexOfCard) {
-        System.out.println("High Card " + indexOfCard);
-        int highestCard = getXHighestCard(players, indexOfCard + 1);
+        int highestCard = getXHighestCard(players, indexOfCard);
         ArrayList<Player> playerList = new ArrayList<>();
         for (Player player:players) {
             if (getCardAt(player.getCards(), indexOfCard) == highestCard) {
@@ -59,7 +58,7 @@ public class TieSettler {
         if (playerList.size() == 1) {
             return playerList.get(0);
         }
-        return settleDraw(players, indexOfCard + 1);
+        return settleDraw(playerList, indexOfCard + 1);
     }
 
     /**
@@ -96,7 +95,7 @@ public class TieSettler {
     private int getCardAt(List<Card> cards, int indexOfCard) {
         Collections.sort(cards);
         if (indexOfCard < cards.size()) {
-            return cards.get(indexOfCard).getCardInfo().getValue0();
+            return cards.get((cards.size() - 1) - indexOfCard).getCardInfo().getValue0();
         }
         return 0;
     }

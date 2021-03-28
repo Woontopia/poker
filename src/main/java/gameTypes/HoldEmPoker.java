@@ -28,7 +28,7 @@ public class HoldEmPoker extends PokerGame {
             dealerActions();
             calculatePlayerHandStrengths();
             showCards();
-            showResults();
+            determineWinner();
             super.askForNewRound();
         }
     }
@@ -40,18 +40,10 @@ public class HoldEmPoker extends PokerGame {
         emptyPlayersHands();
     }
 
-    private void showResults() {
+    public void determineWinner() {
         Collections.sort(super.players);
-        Player winner = super.players.get(0);
-        if (super.settler.isGameTied(super.players)) {
-            winner = super.settler.settleTie(super.players, pool);
-        }
-        for (Player player: super.players) {
-            if (player == winner) {
-                System.out.print("Winner is ");
-            }
-            player.printHandType();
-        }
+        Player winner = (super.settler.isGameTied(super.players)) ? super.settler.settleTie(super.players, pool) : super.players.get(0);
+        printResult(winner);
     }
 
     private void calculatePlayerHandStrengths() {
@@ -105,6 +97,16 @@ public class HoldEmPoker extends PokerGame {
         super.dealer = new Dealer(SupportedTypes.TEXASHOLDEM);
         super.settler = new TieSettler();
         super.addPlayers();
+    }
+
+    private void printResult(Player winner) {
+        System.out.print("Winner is ");
+        winner.printHandType();
+        for (Player player: super.players) {
+            if (player != winner) {
+                player.printHandType();
+            }
+        }
     }
 
 }

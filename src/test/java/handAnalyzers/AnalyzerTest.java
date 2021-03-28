@@ -1,9 +1,8 @@
 package handAnalyzers;
 
-import gameEntity.Card;
-import gameEntity.CardSymbol;
-import gameEntity.Dealer;
-import gameEntity.HandTypes;
+import gameEntity.*;
+import gameEntity.player.Computer;
+import gameEntity.player.Player;
 import gameTypes.SupportedTypes;
 import org.junit.jupiter.api.Test;
 
