@@ -1,13 +1,9 @@
 package gameEntity;
 
-import gameEntity.player.Player;
 import gameTypes.SupportedTypes;
-import handAnalyzers.Analyzer;
 import handAnalyzers.AnalyzerChain;
-import utilities.TieSettler;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Dealer {

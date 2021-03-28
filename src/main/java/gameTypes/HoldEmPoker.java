@@ -5,7 +5,6 @@ import gameEntity.CommunityPool;
 import gameEntity.Dealer;
 import gameEntity.player.Player;
 import utilities.TieSettler;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

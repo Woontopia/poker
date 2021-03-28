@@ -19,10 +19,8 @@ public class MainMenu {
 
     private void printGameTypes() {
         System.out.println("AVAILABLE GAMETYPES");
-        int counter = 1;
         for (SupportedTypes type: SupportedTypes.values()) {
-            System.out.println(counter + ". " + type);
-            counter++;
+            type.printType();
         }
         System.out.println();
     }
@@ -60,12 +58,10 @@ public class MainMenu {
     }
 
     private SupportedTypes getSelectedType(int userInput) {
-        int counter = 1;
         for (SupportedTypes type: SupportedTypes.values()) {
-            if (userInput == counter) {
+            if (userInput == type.getId()) {
                 return type;
             }
-            counter++;
         }
         return null;
     }
