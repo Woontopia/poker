@@ -4,6 +4,7 @@ import gameEntity.Card;
 import gameEntity.CommunityPool;
 import gameEntity.Dealer;
 import gameEntity.player.Player;
+import utilities.TieSettler;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,14 +41,21 @@ public class HoldEmPoker extends PokerGame {
     }
 
     private void showResults() {
-        Collections.sort(players);
-        for (Player player: players) {
+        Collections.sort(super.players);
+        Player winner = super.players.get(0);
+        if (super.settler.isGameTied(super.players)) {
+            winner = super.settler.settleTie(super.players, pool);
+        }
+        for (Player player: super.players) {
+            if (player == winner) {
+                System.out.print("Winner is ");
+            }
             player.printHandType();
         }
     }
 
     private void calculatePlayerHandStrengths() {
-        for (Player player: players) {
+        for (Player player: super.players) {
             player.assignStrength(super.dealer.evaluateHandStrength(combine2Lists(player.getCards(), pool.getPool())));
         }
     }
@@ -61,7 +69,7 @@ public class HoldEmPoker extends PokerGame {
     private void dealCards() {
         int cardsDealt = 0;
         while(cardsDealt < playerNumberOfCards) {
-            for (Player player: players) {
+            for (Player player: super.players) {
                 player.addCard(super.dealer.dealCard());
             }
             cardsDealt++;
@@ -69,13 +77,13 @@ public class HoldEmPoker extends PokerGame {
     }
 
     private void printPlayerHands() {
-        for (Player player: players) {
+        for (Player player: super.players) {
             player.printHand();
         }
     }
 
     private void emptyPlayersHands() {
-        for (Player player: players) {
+        for (Player player: super.players) {
             player.emptyHand();
         }
     }
@@ -95,6 +103,7 @@ public class HoldEmPoker extends PokerGame {
         super.askNumberOfPlayers();
         pool = new CommunityPool(5);
         super.dealer = new Dealer(SupportedTypes.TEXASHOLDEM);
+        super.settler = new TieSettler();
         super.addPlayers();
     }
 

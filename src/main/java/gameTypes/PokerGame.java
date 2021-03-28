@@ -4,6 +4,7 @@ import gameEntity.Dealer;
 import gameEntity.player.Computer;
 import gameEntity.player.Human;
 import gameEntity.player.Player;
+import utilities.TieSettler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public abstract class PokerGame {
     int playerNumberOfCards;
     List<Player> players = new ArrayList<>();
     Dealer dealer;
+    TieSettler settler;
     boolean playing = true;
 
     public abstract void play();

@@ -36,6 +36,16 @@ public class ValueChecker {
         return false;
     }
 
+    public int getValueOfPair(List<Card> cards, int numberOfCards) {
+        List<Integer> cardValues = buildListOfCardValues(cards);
+        for (Card card: cards) {
+            if (Collections.frequency(cardValues, card.getCardInfo().getValue0()) == numberOfCards) {
+                return card.getCardInfo().getValue0();
+            }
+        }
+        return 0;
+    }
+
     private List<Integer> buildListOfCardValues(List<Card> cards) {
         List<Integer> cardValues = new ArrayList<>();
         for (Card card: cards) {

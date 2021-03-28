@@ -13,7 +13,9 @@ public class StraightChecker {
         int count = 1;
         for (int i = 0; i < cards.size(); i++) {
             if (i + 1 < cards.size()) {
-                count = (isConsecutive(cards, i, i + 1)) ? count + 1 : 1;
+                if(!sameValue(cards, i, i + 1)) {
+                    count = (isConsecutive(cards, i, i + 1)) ? count + 1 : 1;
+                }
             } else {
                 if (cards.get(i).getCardInfo().getValue0() == 13 && cards.get(0).getCardInfo().getValue0() == 1) {
                     count++;
@@ -28,5 +30,9 @@ public class StraightChecker {
 
     private boolean isConsecutive(List<Card> cards, int firstIndex, int secondIndex) {
         return cards.get(firstIndex).getCardInfo().getValue0() + 1 == cards.get(secondIndex).getCardInfo().getValue0();
+    }
+
+    private boolean sameValue(List<Card> cards, int firstIndex, int secondIndex) {
+        return cards.get(firstIndex).getCardInfo().getValue0().equals(cards.get(secondIndex).getCardInfo().getValue0());
     }
 }
