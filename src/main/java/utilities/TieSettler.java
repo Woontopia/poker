@@ -14,8 +14,7 @@ public class TieSettler {
     private int bestHandStrength = 0;
 
     public Player settleTie(List<Player> players, CommunityPool pool) {
-        var playerss = getAllPlayersInvolved(players);
-        return settlePairDraws(playerss, pool, 4);
+        return settlePairDraws(getAllPlayersInvolved(players), pool, 4);
     }
 
     public boolean isGameTied(List<Player> players) {
