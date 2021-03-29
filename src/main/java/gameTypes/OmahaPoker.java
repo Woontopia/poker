@@ -16,4 +16,14 @@ public class OmahaPoker extends PokerGame {
     public void newRound() {
 
     }
+
+    @Override
+    public void dealCards() {
+
+    }
+
+    @Override
+    public void printPlayerHands() {
+
+    }
 }

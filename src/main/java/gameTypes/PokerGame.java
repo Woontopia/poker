@@ -25,6 +25,10 @@ public abstract class PokerGame {
 
     public abstract void newRound();
 
+    public abstract void dealCards();
+
+    public abstract void printPlayerHands();
+
     public void askNumberOfPlayers() {
         Scanner sc = new Scanner(System.in);
         do {

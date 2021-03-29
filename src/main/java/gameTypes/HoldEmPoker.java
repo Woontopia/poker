@@ -39,6 +39,24 @@ public class HoldEmPoker extends PokerGame {
         emptyPlayersHands();
     }
 
+    @Override
+    public void dealCards() {
+        int cardsDealt = 0;
+        while(cardsDealt < playerNumberOfCards) {
+            for (Player player: super.players) {
+                player.addCard(super.dealer.dealCard());
+            }
+            cardsDealt++;
+        }
+    }
+
+    @Override
+    public void printPlayerHands() {
+        for (Player player: super.players) {
+            player.printHand();
+        }
+    }
+
     public void determineWinner() {
         Collections.sort(super.players);
         Player winner = (super.settler.isGameTied(super.players)) ? super.settler.settleTie(super.players, pool) : super.players.get(0);
@@ -55,22 +73,6 @@ public class HoldEmPoker extends PokerGame {
         List<Card> combinedList = new ArrayList<>(listOne);
         combinedList.addAll(listTwo);
         return combinedList;
-    }
-
-    private void dealCards() {
-        int cardsDealt = 0;
-        while(cardsDealt < playerNumberOfCards) {
-            for (Player player: super.players) {
-                player.addCard(super.dealer.dealCard());
-            }
-            cardsDealt++;
-        }
-    }
-
-    private void printPlayerHands() {
-        for (Player player: super.players) {
-            player.printHand();
-        }
     }
 
     private void emptyPlayersHands() {
@@ -107,5 +109,4 @@ public class HoldEmPoker extends PokerGame {
             }
         }
     }
-
 }

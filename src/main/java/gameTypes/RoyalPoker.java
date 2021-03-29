@@ -15,4 +15,14 @@ public class RoyalPoker extends PokerGame {
     public void newRound() {
 
     }
+
+    @Override
+    public void dealCards() {
+
+    }
+
+    @Override
+    public void printPlayerHands() {
+
+    }
 }
