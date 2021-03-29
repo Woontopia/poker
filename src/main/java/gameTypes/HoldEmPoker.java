@@ -3,6 +3,7 @@ package gameTypes;
 import gameEntity.Card;
 import gameEntity.CommunityPool;
 import gameEntity.Dealer;
+import gameEntity.DealerEntity;
 import gameEntity.player.Player;
 import utilities.TieSettler;
 import java.util.ArrayList;

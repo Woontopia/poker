@@ -6,7 +6,7 @@ import handAnalyzers.AnalyzerChain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dealer {
+public class Dealer implements DealerEntity{
     private Deck deck;
     private SupportedTypes gameType;
 

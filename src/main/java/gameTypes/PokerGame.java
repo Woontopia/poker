@@ -1,6 +1,7 @@
 package gameTypes;
 
 import gameEntity.Dealer;
+import gameEntity.DealerEntity;
 import gameEntity.player.Computer;
 import gameEntity.player.Human;
 import gameEntity.player.Player;
@@ -17,7 +18,7 @@ public abstract class PokerGame {
     int nbPlayers;
     int playerNumberOfCards;
     List<Player> players = new ArrayList<>();
-    Dealer dealer;
+    DealerEntity dealer;
     TieSettler settler;
     boolean playing = true;
 
