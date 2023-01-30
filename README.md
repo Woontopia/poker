@@ -1,6 +1,6 @@
 # ReadME
 ## Projet
-Application terminale permettant de jouer au Poker (Texas Hold'em, Omaha, Five Card Draw, Royal Hold'em), seulement
+Application console permettant de jouer au Poker (Texas Hold'em, Omaha, Five Card Draw, Royal Hold'em), seulement
 le type Texas Hold'em et supporter pour le moment. Cette application a été développer dans le cadre d'un cours sur les
 design pattern où il fallait avoir au minimum 3 patron différent.
 
